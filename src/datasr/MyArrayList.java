@@ -32,7 +32,24 @@ public class MyArrayList {
     public int howManyElements(){
         return counter;
     }
-    
+
+    private void reSize(){
+
+        int newSize = (counter <= 100)? size *2 :(int) (size * 1.5);
+
+        int[] newList = new int [newSize];
+
+        for (int i = 0; i < size; i++){
+            newList[i] = list[i];
+        }
+        
+        list = newList;
+
+        System.gc();
+
+        size = newSize;
+
+    }
 }
 
 
