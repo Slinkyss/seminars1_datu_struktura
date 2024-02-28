@@ -108,7 +108,28 @@ public class MyArrayList {
                 indexes.add(i);
             }
         }
+
+        if(indexes.size() == 0) throw Exception("Element is not found");
+
         return indexes;
+    }
+
+    public int[] findNeighbours(int element)throws Exception{
+        ArrayList indexes = findElement(element);
+
+        int neigboursSize = indexes.size();
+
+        if((Integer)indexes.get(indexes.size()-1) == (counter-1))
+            neigboursSize--;
+
+        int[] neigbours = new int[neigboursSize];
+
+        for(int i = 0; i < neigboursSize; i++){
+            neigbours[i] = list[(int)indexes.get(i)+1];
+        }
+
+        return neigbours;
+        
     }
 
 }
