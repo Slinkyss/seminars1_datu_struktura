@@ -42,13 +42,37 @@ public class MyArrayList {
         for (int i = 0; i < size; i++){
             newList[i] = list[i];
         }
-        
+
         list = newList;
 
         System.gc();
 
         size = newSize;
 
+    }
+
+    public void AddElement(int element){
+        if(isFull()) reSize();
+
+        list[counter] = element;
+
+        counter++;
+
+    }
+
+    public void AddElementByIndex(int index, int element) throws Exception{
+        if(index < 0 || index > counter){
+            throw new Exception("Index error");
+        }
+        if(isFull()) reSize();
+
+        if(index == counter) AddElement(element);
+
+        for(int i = counter; i > index; i--){
+            list[i] = list[i-1];
+        }
+        list[index] = element;
+        counter++;
     }
 }
 
