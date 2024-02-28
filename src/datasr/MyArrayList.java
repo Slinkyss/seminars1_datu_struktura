@@ -1,5 +1,7 @@
 package datasr;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyArrayList {
@@ -89,6 +91,25 @@ public class MyArrayList {
         counter--;
     }
 
+    public int takeout(int index)throws Exception{
+        if(isEmpty()) throw new Exception("Empty list");
+        if(index < 0 || index > counter){
+            throw new Exception("Index error");
+        }
+        return list[index];
+    }
+
+    public ArrayList findElement(int element)throws Exception{
+        if(isEmpty()) throw new Exception("Empty list");
+
+        ArrayList indexes = new ArrayList();
+        for(int i = 0; i < counter; i++ ){
+            if(list[i] == element){
+                indexes.add(i);
+            }
+        }
+        return indexes;
+    }
 
 }
 
