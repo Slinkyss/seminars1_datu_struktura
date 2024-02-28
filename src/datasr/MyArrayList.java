@@ -129,9 +129,44 @@ public class MyArrayList {
         }
 
         return neigbours;
-        
+
     }
 
+    public void print() throws Exception {
+        if(isEmpty()) throw new Exception("Empty list");
+
+        for(int i = 0; i < counter; i ++){
+            System.out.println(list[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public void makeEmpty() throws Exception {
+        if(isEmpty()) throw new Exception("Empty list");
+        size = LIST_DEF_SIZE;
+        counter = 0;
+        list = new int [size];
+        System.gc();
+    }
+
+
+    public void sort()throws Exception {
+        if (isEmpty()) throw new Exception("Empty list");
+
+        int n = counter;
+        int temp = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < (n - i); j++) {
+                if (list[j - 1] > list[j]) {
+                    //swap elements
+                    temp = list[j - 1];
+                    list[j - 1] = list[j];
+                    list[j] = temp;
+                }
+
+            }
+        }
+    }
 }
 
 
