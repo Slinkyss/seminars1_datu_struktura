@@ -67,14 +67,32 @@ public class MyArrayList {
         if(isFull()) reSize();
 
         if(index == counter) AddElement(element);
-
-        for(int i = counter; i > index; i--){
-            list[i] = list[i-1];
-        }
-        list[index] = element;
-        counter++;
+        else{
+            for(int i = counter; i > index; i--) {
+                list[i] = list[i - 1];
+            }
+                list[index] = element;
+                counter++;
+            }
     }
+
+    public void DeleteElementByIndex(int index)throws Exception{
+        if(isEmpty()) throw new Exception("Empty list");
+        if(index < 0 || index > counter){
+            throw new Exception("Index error");
+        }
+
+        for(int i = index; i < counter -1; i++){
+
+            list[i] = list[i+1];
+        }
+        counter--;
+    }
+
+
 }
+
+
 
 
 
