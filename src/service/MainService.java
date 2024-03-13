@@ -3,10 +3,11 @@ package service;
 import java.util.Arrays;
 
 import datasr.MyArrayList;
+import Model.*;
 public class MainService {
     public static void main(String[] args) {
 
-        MyArrayList myList = new MyArrayList(3);
+        MyArrayList<Integer> myList = new MyArrayList(3);
 
         myList.AddElement(100);
         myList.AddElement(200);

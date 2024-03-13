@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MyArrayList {
+public class MyArrayList <Ttype>{
 
-    private int[] list;
+    private Ttype[] list;
     private final int LIST_DEF_SIZE = 10;
     private int size = LIST_DEF_SIZE;
     private int counter = 0;
     public MyArrayList() {
-        list = new int[size];
+        list = (Ttype[]) new Object[size];
     }
 
     public MyArrayList(int inputSize){
@@ -20,7 +20,7 @@ public class MyArrayList {
             size = inputSize;
         }
 
-        list = new int[size];
+        list = (Ttype[]) new Object[size];
     }
 
     public boolean isEmpty(){
@@ -39,7 +39,7 @@ public class MyArrayList {
 
         int newSize = (counter <= 100)? size *2 :(int) (size * 1.5);
 
-        int[] newList = new int [newSize];
+        Ttype[] newList = (Ttype[]) new Object[newSize];
 
         for (int i = 0; i < size; i++){
             newList[i] = list[i];
@@ -53,16 +53,16 @@ public class MyArrayList {
 
     }
 
-    public void AddElement(int element){
+    public void AddElement(Ttype element){
         if(isFull()) reSize();
 
-        list[counter] = element;
+        list[counter]  = element;
 
         counter++;
 
     }
 
-    public void AddElementByIndex(int index, int element) throws Exception{
+    public void AddElementByIndex(int index, Ttype element) throws Exception{
         if(index < 0 || index > counter){
             throw new Exception("Index error");
         }
@@ -91,7 +91,7 @@ public class MyArrayList {
         counter--;
     }
 
-    public int takeout(int index)throws Exception{
+    public Ttype takeout(int index)throws Exception{
         if(isEmpty()) throw new Exception("Empty list");
         if(index < 0 || index > counter){
             throw new Exception("Index error");
@@ -99,7 +99,7 @@ public class MyArrayList {
         return list[index];
     }
 
-    public ArrayList findElement(int element)throws Exception{
+    public ArrayList findElement(Ttype element)throws Exception{
         if(isEmpty()) throw new Exception("Empty list");
 
         ArrayList indexes = new ArrayList();
@@ -114,7 +114,7 @@ public class MyArrayList {
         return indexes;
     }
 
-    public int[] findNeighbours(int element)throws Exception{
+    public Ttype[] findNeighbours(Ttype element)throws Exception{
         ArrayList indexes = findElement(element);
 
         int neigboursSize = indexes.size();
@@ -122,7 +122,7 @@ public class MyArrayList {
         if((Integer)indexes.get(indexes.size()-1) == (counter-1))
             neigboursSize--;
 
-        int[] neigbours = new int[neigboursSize];
+        Ttype[] neigbours = (Ttype[]) new Object[neigboursSize];
 
         for(int i = 0; i < neigboursSize; i++){
             neigbours[i] = list[(int)indexes.get(i)+1];
@@ -145,7 +145,7 @@ public class MyArrayList {
         if(isEmpty()) throw new Exception("Empty list");
         size = LIST_DEF_SIZE;
         counter = 0;
-        list = new int [size];
+        list = (Ttype[]) new Object[size];
         System.gc();
     }
 
@@ -154,12 +154,13 @@ public class MyArrayList {
         if (isEmpty()) throw new Exception("Empty list");
 
         int n = counter;
-        int temp = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
-                if (list[j - 1] > list[j]) {
+               // if (list[j - 1] > list[j]) {
                     //swap elements
-                    temp = list[j - 1];
+                 if( ((Comparable)(list[i])).compareTo(list[j]) == 1  )  {
+
+                    Ttype temp = list[j - 1];
                     list[j - 1] = list[j];
                     list[j] = temp;
                 }
