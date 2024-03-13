@@ -104,7 +104,7 @@ public class MyArrayList <Ttype>{
 
         ArrayList indexes = new ArrayList();
         for(int i = 0; i < counter; i++ ){
-            if(list[i] == element){
+            if(list[i].equals(element)){
                 indexes.add(i);
             }
         }
