@@ -109,7 +109,7 @@ public class MyArrayList {
             }
         }
 
-        if(indexes.size() == 0) throw Exception("Element is not found");
+        if(indexes.size() == 0) throw new Exception("Element is not found");
 
         return indexes;
     }
